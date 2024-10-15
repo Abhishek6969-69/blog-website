@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+// @ts-ignore
 import ReactQuill, { Quill } from "react-quill";
-import 'react-quill/dist/quill.snow.css'; 
+import 'react-quill/dist/quill.snow.css';
+
 // @ts-ignore
 import ImageUploader from "quill-image-uploader";
 import axios from "axios";

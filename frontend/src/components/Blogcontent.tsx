@@ -6,7 +6,7 @@ import Appbar from "./Appbar";
 
 function Blogcontent(): ReactNode {
   const {  blogs2 } = useEachblog();
-  console.log(blogs2, "yess");
+ 
   //  if(!loading){
   //   return<div>
   //     .......loading

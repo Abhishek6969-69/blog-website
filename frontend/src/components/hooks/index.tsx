@@ -21,7 +21,7 @@ import { useParams } from "react-router-dom";
 
 export const useEachblog=(()=>{
     const {id}=useParams<{id:string}>();
-    console.log(id)
+   
     const [loading,setloading]=useState(true);
 const[blogs2,setblogs2]=useState<Blog >();
 if(!loading){
@@ -32,13 +32,13 @@ if(!loading){
 useEffect(()=>{
     const fetchdata=async()=>{
         const token1= localStorage.getItem('token')
-        console.log(token1,"hiii")
+      
         const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
             headers: {
                 Authorization:  token1 ,
             },
         });
-      console.log(response.data.post);
+     
       setblogs2(response.data.post)
       setloading(false)
     }
@@ -67,7 +67,7 @@ useEffect(()=>{
                 Authorization: token1 ,
             },
         });
-      console.log(response);
+    
       setblog(response.data.post)
       setloading(false)
     }

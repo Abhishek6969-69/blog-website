@@ -14,8 +14,7 @@ export const userRouter = new Hono<{
 }>();
     userRouter.post('/signup',async (c) => {
       const body=await c.req.json();
-      console.log('Request Body:', body);
-      console.log(body)
+     
       const {success}=signupinput.safeParse(body);
       if(!success){
         c.status(403);
@@ -26,7 +25,7 @@ export const userRouter = new Hono<{
       }).$extends(withAccelerate())
       try{
        
-        console.log(body)
+       
         const user=await prisma.user.create({
           data:{
             email:body.email,
@@ -42,7 +41,7 @@ export const userRouter = new Hono<{
           }) 
       }
       catch(e){
-        console.log(e);
+       
         c.status(411);
         return c.text("invalid");
       }
@@ -73,7 +72,7 @@ export const userRouter = new Hono<{
           return c.json({jwt:token})
       }
       catch(e){
-        console.log(e);
+       
         c.status(411);
         return c.text("invalid")
       }

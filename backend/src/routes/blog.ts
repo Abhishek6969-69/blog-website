@@ -46,7 +46,7 @@ try{
         c.status(403);
         return c.json("invalid");
       }
-      console.log("Received data:",  body );
+   
   const userId=c.get('userId');
   const blog=await prisma.post.create({
     data:{
@@ -166,7 +166,7 @@ return c.json({post} )
   
   blogrouter.get('/:id',async (c) => {
     const idstring = c.req.param('id');
-    console.log(idstring,"hi i am id")
+   
    const id=parseInt(idstring);
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,

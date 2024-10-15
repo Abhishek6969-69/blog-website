@@ -51,7 +51,7 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
             .then(result => {
               const imageUrl = result.data.url;
               this.setState({ imageUrl });
-              console.log("Image uploaded successfully:", imageUrl);   // Store the image URL in the state
+               // Store the image URL in the state
               resolve(imageUrl);  // Resolve with the image URL to display it in the editor
             })
             .catch(error => {
@@ -79,13 +79,9 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
 
   handleSubmit = async () => {
     const { text, firstName, imageUrl } = this.state;
-    console.log(imageUrl,"dgiuskgdku")
+   
     const plainText = this.stripHtmlTags(text);  // Remove HTML tags for plain text
-    console.log("Submitting data:", {
-        content: plainText,
-        title: firstName,
-        imageUrl: imageUrl
-      });
+   
     try {
       const token1 = localStorage.getItem('token') || null;
       const response = await axios.post("http://localhost:8787/api/v1/blog", {
@@ -102,7 +98,7 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
         throw new Error("Network response was not ok");
       }
 
-      console.log("Blog created successfully:", response.data);
+    
       
       const blogId = response.data.id; 
       this.props.navigate(`/blog/${blogId}`);

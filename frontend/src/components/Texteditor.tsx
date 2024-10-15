@@ -7,6 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import ImageUploader from "quill-image-uploader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { BACKEND_URL } from "./config";
 
 Quill.register("modules/imageUploader", ImageUploader);
 
@@ -84,7 +85,7 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
    
     try {
       const token1 = localStorage.getItem('token') || null;
-      const response = await axios.post("http://localhost:8787/api/v1/blog", {
+      const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
         content: plainText,
         title: firstName,
         imageurl: imageUrl  // Include the image URL in the payload

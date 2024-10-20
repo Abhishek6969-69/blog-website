@@ -3,7 +3,7 @@
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { Hono } from 'hono';
-import { sign } from 'hono/jwt'
+import { verify, sign } from 'hono/jwt'
 // @ts-ignore
 import { signupinput,signininput } from '@abhishekyaduvanshi/common';
 export const userRouter = new Hono<{
@@ -78,8 +78,24 @@ export const userRouter = new Hono<{
       }
       
       })
-      
+ userRouter.get('/getloggedinuser',async(c)=>{
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+}).$extends(withAccelerate())
 
+const authheader=c.req.header('Authorization');
+const token=authheader?.split(' ')[1] || '';
+const res=await verify(token,c.env.JWT_TOKEN)
+console.log(res.id);
+const users=await prisma.user.findUnique({
+  where:{
+    id:Number(res.id)
+  },select:{
+name:true,
+email:true
 
-
+  }
+})
+return c.json({users})
+ })
      

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "./config";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SigninInput } from "@abhishekyaduvanshi/common";
 
 function Signinauth() {
@@ -23,8 +23,8 @@ function Signinauth() {
   return (
     <div className="h-screen flex justify-center items-center">
         <div className="">
-           <h1 className=" text-3xl font-bold ">Create an Account</h1>
-           <h3 className="  text-slate-600 mx-[20px]">Already Have an account? Login</h3>
+           <h1 className=" text-3xl font-bold text-center  ">Login</h1>
+           <h3 className="  text-slate-600 mx-[20px]"><Link to={'/signup'}>Don't have Account? signup</Link></h3>
           
            <Inputbox label="Email" placeholder={"Email"} type="email"  onchange={(e)=>{
 setpostinput({
@@ -39,7 +39,7 @@ setpostinput({
 })
            }}/>
            <button type="button" onClick={sendrequest} className="text-white mt-6 w-full  hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Signup</button>
-       {  JSON.stringify(postinput.email)}
+      
         </div>
   
     </div>

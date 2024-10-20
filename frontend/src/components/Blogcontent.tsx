@@ -1,53 +1,46 @@
 import { useEachblog } from "./hooks";
-import { ReactNode } from "react"; //
+import { ReactNode } from "react";
 import { Avatar } from "./Blogcards";
-
 import Appbar from "./Appbar";
 
 function Blogcontent(): ReactNode {
-  const {  blogs2 } = useEachblog();
- 
-  //  if(!loading){
-  //   return<div>
-  //     .......loading
-  //   </div>
-  //  }
+  const { blogs2 } = useEachblog();
+
+  // Check if blogs2 is available
   if (!blogs2) {
-    return;
+    return <div>Loading...</div>; // You can adjust this message as needed
   }
+
   return (
     <div>
-      <div><Appbar /></div>
-   <div className=" flex justify-center  mt-28 ">
-      <div className="">
-        <div className=" flex justify-center ">
-        <h1 className="  text-5xl font -bold capitalize w-1/2 ml-16 ">{blogs2.title}</h1>
-        </div>
-        <div className=" flex justify-center ">
-          <div className=" mt-6">
-            <Avatar name={blogs2.author.name} w={35} h={35}  />
+      <Appbar />
+      <div className="flex justify-center mt-10 md:mt-28">
+        <div className="w-full max-w-3xl mx-4">
+          <div className="flex justify-center">
+            <h1 className="text-3xl md:text-5xl font-bold capitalize w-full text-center">
+              {blogs2.title}
+            </h1>
           </div>
-          <div className=" mt-4 ml-4">
-            <h3>{blogs2.author.name} </h3>
-            <div className=" inline">
-              {`${Math.ceil(blogs2.content.length / 100)} minute(s) read`}
-              <h4 className=" inline ml-4"> {blogs2.publishdate}</h4>
+          <div className="flex justify-center items-center mt-6">
+            <Avatar name={blogs2.author.name} w={35} h={35} />
+            <div className="ml-4 text-center">
+              <h3 className="text-lg font-semibold">{blogs2.author.name}</h3>
+              <div className="inline">
+                {`${Math.ceil(blogs2.content.length / 100)} minute(s) read`}
+                <h4 className="inline ml-4 text-sm">{blogs2.publishdate}</h4>
+              </div>
+            </div>
+          </div>
+          <div className="mt-10 w-full">
+            <div className="flex justify-center">
+              <img src={blogs2.imageurl} className="w-full max-w-lg" alt={blogs2.title} />
+            </div>
+            <div className="mt-10 text-lg leading-relaxed">
+              <p>{blogs2.content}</p>
             </div>
           </div>
         </div>
-        <div className="  w-1/2  m-auto">
-        <div className="  400px  flex justify-center mt-10">
-        <img src={blogs2?.
-imageurl} className="w-[550px]" />
       </div>
-        <div className=" flex align-middle justify-center mt-10">
-        {blogs2.content}
-      </div>
-      </div>
-      </div>
-     
-      
-    </div>
     </div>
   );
 }

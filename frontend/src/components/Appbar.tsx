@@ -19,9 +19,8 @@ useEffect(()=>{
   setuserlog(loggedinornot);
 },[loggedinornot])
   
- if(!userlog){
-  navigate('/signup')
- }
+
+
   
   return (
     <div className=" flex justify-between p-3  border-b-2  ">

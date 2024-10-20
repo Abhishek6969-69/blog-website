@@ -22,10 +22,10 @@ function Blogs() {
            
                 {
                 loading==true?<div className=" w-full  "><Shimmer/></div> :blog.map((b)=>
-                <Link to={`/blog/${b.id}`} >
+                <Link to={`/blog/${b.id}`} key={b.id} >
                     <div className=" mr-60 mt-5 mb-2">
                     <Blogcard  authorname={b.author.name} publisheddate={b.
-publishdate}
+publishdate}             key={b.id}
                     title={b.title} 
                     content={b.content} 
                     imageurl={b.imageurl} />

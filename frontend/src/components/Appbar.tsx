@@ -1,8 +1,8 @@
 
 import { Avatar } from "./Blogcards"
 import { Link, useNavigate } from "react-router-dom"
-import { useAppSelector} from "./utils/hook";
-import { selectLoggedIn, selectUsers } from "./utils/slice1";
+import { useAppSelector} from "../utils/hook";
+import { selectLoggedIn, selectUsers } from "../utils/slice1";
 import { useState ,useEffect} from "react";
 function Appbar() {
   const navigate=useNavigate();

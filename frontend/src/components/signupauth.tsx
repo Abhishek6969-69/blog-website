@@ -4,7 +4,7 @@ import { BACKEND_URL } from "./config";
 import { Link, useNavigate } from "react-router-dom";
 import {  useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser, setLoggedIn } from './utils/slice1'; // Adjust the path as necessary
+import { addUser, setLoggedIn } from '../utils/slice1'; // Adjust the path as necessary
 
 function Signupauth() {
   const dispatch = useDispatch();

@@ -2,13 +2,14 @@ import { useEachblog } from "./hooks";
 import { ReactNode } from "react";
 import { Avatar } from "./Blogcards";
 import Appbar from "./Appbar";
+import Shimmer from "./shimmer";
 
 function Blogcontent(): ReactNode {
   const { blogs2 } = useEachblog();
 
   // Check if blogs2 is available
   if (!blogs2) {
-    return <div>Loading...</div>; // You can adjust this message as needed
+    return <div><Shimmer /></div>; // You can adjust this message as needed
   }
 
   return (
@@ -33,9 +34,9 @@ function Blogcontent(): ReactNode {
           </div>
           <div className="mt-10 w-full">
             <div className="flex justify-center">
-              <img src={blogs2.imageurl} className="w-full max-w-lg" alt={blogs2.title} />
+              <img src={blogs2.imageurl} className="w-full max-w-lg font-serif" alt={blogs2.title} />
             </div>
-            <div className="mt-10 text-lg leading-relaxed">
+            <div className="mt-10 text-lg leading-relaxed font-serif">
               <p>{blogs2.content}</p>
             </div>
           </div>

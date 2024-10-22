@@ -17,7 +17,7 @@ return (
             </div>
           </div>
           <div className="text-xl font-bold mt-2">{title}</div>
-          <div className="mt-2">
+          <div className="mt-2 font-serif">
             {content.slice(0, 100) + "..."}
           </div>
           <div className="mt-1">

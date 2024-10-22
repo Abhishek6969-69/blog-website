@@ -4,6 +4,7 @@ import { BACKEND_URL } from "./config";
 import { Link, useNavigate } from "react-router-dom";
 import { SigninInput } from "@abhishekyaduvanshi/common";
 
+
 function Signinauth() {
     const navigate=useNavigate();
     const[postinput,setpostinput]=useState<SigninInput> ({
@@ -18,6 +19,7 @@ function Signinauth() {
           )
           const token=response.data.jwt;
           localStorage.setItem('token','Bearer '+token)
+         
            navigate('/');
          }
   return (

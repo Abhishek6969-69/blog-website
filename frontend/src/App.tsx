@@ -25,6 +25,7 @@ function App() {
       <Route path="/blog/:id" element={<Blogcontent />} />
      
       <Route path="/createblog" element={<Createblog />} />
+     
     </Routes>
   );
 }

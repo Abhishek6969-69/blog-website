@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useAppSelector} from "../utils/hook";
 import { selectLoggedIn, selectUsers } from "../utils/slice1";
 import { useState ,useEffect} from "react";
+
 function Appbar() {
   const navigate=useNavigate();
   const [username,setUsername]=useState('Abhishek')
@@ -23,8 +24,9 @@ useEffect(()=>{
 
   
   return (
-    <div className=" flex justify-between p-3  border-b-2  ">
-      <div className=" ">
+    <div className=" flex justify-between items-center p-2  border-b-2  ">
+     
+      <div className=" font-serif ">
         <Link to={'/'}>Medium</Link></div>
       <div className=" flex items-center gap-10">
       <div>

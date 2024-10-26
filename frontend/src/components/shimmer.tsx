@@ -21,7 +21,7 @@ const Shimmer = () => {
     <div className="h-2.5 bg-gray-200 rounded-full w-[800px]  mb-4"></div>
     
     
-    <div className="h-2.5  bg-gray-200 rounded-full  w-[1000px]  mb-4"></div>
+   
     <div className="h-2.5 bg-gray-200 rounded-full  w-[1000px]  mb-4"></div>
     <div className="h-2.5 bg-gray-200 rounded-full  w-[1000px]  mb-4"></div>
     <div className="h-2.5  bg-gray-200 rounded-full  w-[1000px]  mb-4"></div>

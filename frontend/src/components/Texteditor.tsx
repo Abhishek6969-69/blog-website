@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-// @ts-ignore
 import ReactQuill, { Quill } from "react-quill";
 import 'react-quill/dist/quill.snow.css';
-
 // @ts-ignore
 import ImageUploader from "quill-image-uploader";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "./config";
 
 Quill.register("modules/imageUploader", ImageUploader);
@@ -14,7 +12,7 @@ Quill.register("modules/imageUploader", ImageUploader);
 interface TextEditorState {
   text: string;
   firstName: string;
-  imageUrl: string | "";  // To store the image URL
+  imageUrl: string | "";
 }
 
 class TextEditor extends Component<{ navigate: (path: string) => void }, TextEditorState> {
@@ -23,7 +21,7 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
     this.state = {
       text: "",
       firstName: "",
-      imageUrl: "",  // Initialize imageUrl in the state
+      imageUrl: "",
     };
   }
 
@@ -52,8 +50,7 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
             .then(result => {
               const imageUrl = result.data.url;
               this.setState({ imageUrl });
-               // Store the image URL in the state
-              resolve(imageUrl);  // Resolve with the image URL to display it in the editor
+              resolve(imageUrl);
             })
             .catch(error => {
               reject("Upload failed");
@@ -80,15 +77,13 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
 
   handleSubmit = async () => {
     const { text, firstName, imageUrl } = this.state;
-   
-    const plainText = this.stripHtmlTags(text);  // Remove HTML tags for plain text
-   
+
     try {
       const token1 = localStorage.getItem('token') || null;
       const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
-        content: plainText,
+        content: text,  // Send the full HTML content
         title: firstName,
-        imageurl: imageUrl  // Include the image URL in the payload
+        imageurl: imageUrl
       }, {
         headers: {
           Authorization: token1 ? ` ${token1}` : undefined,
@@ -99,18 +94,12 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
         throw new Error("Network response was not ok");
       }
 
-    
-      
-      const blogId = response.data.id; 
+      const blogId = response.data.id;
       this.props.navigate(`/blog/${blogId}`);
       
     } catch (error) {
       console.error("Error creating blog:", error);
     }
-  };
-
-  stripHtmlTags = (html: string) => {
-    return html.replace(/<[^>]+>/g, '').trim();
   };
 
   render() {
@@ -121,7 +110,7 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
           <input 
             type="text" 
             id="first_name" 
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
             placeholder="Title of the blog" 
             required 
             onChange={this.handleInputChange}
@@ -147,7 +136,6 @@ class TextEditor extends Component<{ navigate: (path: string) => void }, TextEdi
     );
   }
 }
-
 
 const TextEditorWrapper = () => {
   const navigate = useNavigate();

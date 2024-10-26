@@ -3,11 +3,9 @@ import { SignupInput } from "@abhishekyaduvanshi/common";
 import { BACKEND_URL } from "./config";
 import { Link, useNavigate } from "react-router-dom";
 import {  useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addUser, setLoggedIn } from '../utils/slice1'; // Adjust the path as necessary
 
 function Signupauth() {
-  const dispatch = useDispatch();
+
   const [postinput, setpostinput] = useState<SignupInput>({
     name: "",
     email: "",
@@ -20,7 +18,7 @@ function Signupauth() {
     try {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, postinput);
       const token = response.data.jwt;
-      console.log(token);
+     
       localStorage.setItem('token', 'Bearer ' + token);
 
       // Call to get user info after signup
@@ -29,15 +27,10 @@ function Signupauth() {
           Authorization: localStorage.getItem('token'),
         },
       });
+    
+localStorage.setItem('user',JSON.stringify(userRes.data.users))
 
-      const newUser = {
-        email: userRes.data.users.email,
-        name: userRes.data.users.name,
-      };
-
-      // Dispatch action to add the new user to the store
-      dispatch(addUser(newUser));
-      dispatch(setLoggedIn(true))
+      
       navigate('/');
     } catch (error) {
       console.error('Error signing up:', error);
@@ -69,7 +62,7 @@ const Inputbox = ({ placeholder, type, label, onchange }: InputProps) => {
   return (
     <div className="mt-3">
       <label className="block mb-1 text-sm font-medium text-gray-900">{label}</label>
-      <input type={type} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={placeholder} required onChange={onchange} />
+      <input type={type} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required onChange={onchange} />
     </div>
   )
 }

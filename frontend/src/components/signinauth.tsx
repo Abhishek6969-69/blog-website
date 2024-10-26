@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SigninInput } from "@abhishekyaduvanshi/common";
 
 
-function Signinauth() {
+ function Signinauth() {
     const navigate=useNavigate();
     const[postinput,setpostinput]=useState<SigninInput> ({
        

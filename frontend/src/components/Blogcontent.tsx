@@ -1,15 +1,22 @@
 import { useEachblog } from "./hooks";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Avatar } from "./Blogcards";
 import Appbar from "./Appbar";
 import Shimmer from "./shimmer";
 
 function Blogcontent(): ReactNode {
   const { blogs2 } = useEachblog();
+  const [content2, setContent] = useState<string>('');
+
+  useEffect(() => {
+    if (blogs2) {
+      setContent(blogs2.content);  // Set the HTML content once blogs2 is available
+    }
+  }, [blogs2]);
 
   // Check if blogs2 is available
   if (!blogs2) {
-    return <div><Shimmer /></div>; // You can adjust this message as needed
+    return <div><Shimmer /></div>;
   }
 
   return (
@@ -37,7 +44,7 @@ function Blogcontent(): ReactNode {
               <img src={blogs2.imageurl} className="w-full max-w-lg font-serif" alt={blogs2.title} />
             </div>
             <div className="mt-10 text-lg leading-relaxed font-serif">
-              <p>{blogs2.content}</p>
+              <div dangerouslySetInnerHTML={{ __html: content2 }} /> {/* Render HTML content */}
             </div>
           </div>
         </div>

@@ -17,9 +17,9 @@ return (
             </div>
           </div>
           <div className="text-xl font-bold mt-2">{title}</div>
-          <div className="mt-2 font-serif">
-            {content.slice(0, 100) + "..."}
-          </div>
+          <div className="mt-2 font-serif"  dangerouslySetInnerHTML={{ __html:content.slice(0, 100) + "..." }} />
+         
+         
           <div className="mt-1">
             {`${Math.ceil(content.length / 100)} minute(s) read`}
           </div>

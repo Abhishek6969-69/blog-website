@@ -86,7 +86,7 @@ export const userRouter = new Hono<{
 const authheader=c.req.header('Authorization');
 const token=authheader?.split(' ')[1] || '';
 const res=await verify(token,c.env.JWT_TOKEN)
-console.log(res.id);
+
 const users=await prisma.user.findUnique({
   where:{
     id:Number(res.id)

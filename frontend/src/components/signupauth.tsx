@@ -3,6 +3,7 @@ import { SignupInput } from "@abhishekyaduvanshi/common";
 import { BACKEND_URL } from "./config";
 import { Link, useNavigate } from "react-router-dom";
 import {  useState } from 'react';
+// import Secondarybtn from '../pages/Secondarybtn';
 
 function Signupauth() {
 
@@ -31,7 +32,7 @@ function Signupauth() {
 localStorage.setItem('user',JSON.stringify(userRes.data.users))
 
       
-      navigate('/');
+      navigate('/landingpage');
     } catch (error) {
       console.error('Error signing up:', error);
     }
@@ -45,7 +46,8 @@ localStorage.setItem('user',JSON.stringify(userRes.data.users))
         <Inputbox label="Name" placeholder={"Name"} type="text" onchange={(e) => setpostinput({ ...postinput, name: e.target.value })} />
         <Inputbox label="Email" placeholder={"Email"} type="email" onchange={(e) => setpostinput({ ...postinput, email: e.target.value })} />
         <Inputbox label="Password" placeholder={"Password"} type="password" onchange={(e) => setpostinput({ ...postinput, password: e.target.value })} />
-        <button type="button" onClick={sendrequest} className="text-white mt-6 w-full hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Signup</button>
+        <button type="button" onClick={sendrequest} className=" mt-6 w-full  hover:bg-slate-200  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 border bg-white">Signup</button>
+      
       </div>
     </div>
   )

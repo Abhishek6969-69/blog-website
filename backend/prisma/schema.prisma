@@ -27,5 +27,5 @@ model Post{
   published Boolean? @default(false)
   authorid Int
   author User @relation(fields: [authorid],references: [id])
-  publishdate       DateTime? @default(now()) @db.Timestamptz(6)
+  publishdate     DateTime? @default(now()) @db.Date
 }

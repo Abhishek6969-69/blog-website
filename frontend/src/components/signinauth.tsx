@@ -15,12 +15,13 @@ import { SigninInput } from "@abhishekyaduvanshi/common";
   
     async function sendrequest(){
         const response=await  axios.post(`${BACKEND_URL}/api/v1/user/signin`,
-              postinput
+              postinput,
+              
           )
           const token=response.data.jwt;
           localStorage.setItem('token','Bearer '+token)
          
-           navigate('/');
+           navigate('/landingpage');
          }
   return (
     <div className="h-screen flex justify-center items-center">
@@ -40,7 +41,7 @@ setpostinput({
     password:e.target.value
 })
            }}/>
-           <button type="button" onClick={sendrequest} className="text-white mt-6 w-full  hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Signup</button>
+           <button type="button" onClick={sendrequest} className="text-white mt-6 w-full  hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Signin</button>
       
         </div>
   

@@ -42,7 +42,7 @@ const Shownotification=async()=>{
       }
     });
     
-   navigate('/');
+   navigate('/landingpage');
     
   }
   catch(e){

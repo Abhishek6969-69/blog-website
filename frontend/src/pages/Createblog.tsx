@@ -1,7 +1,7 @@
 
 import Appbar from '../components/Appbar';
 import  BlogEditor from '../components/Texteditor'
-import { Provider } from 'react-redux';
+
 
 export const Createblog = () => {
   return (

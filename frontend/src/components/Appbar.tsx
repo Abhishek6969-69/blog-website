@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BsBookFill } from "react-icons/bs";
-import { TfiWrite } from "react-icons/tfi";
+
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 import { Avatar } from "./Blogcards";
 import { Button } from "./ui/button";
@@ -16,7 +15,7 @@ function Appbar() {
   const navigate = useNavigate();
   const [logout, setLogout] = React.useState(false);
   const [username, setUsername] = React.useState("Abhishek");
-
+  
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     setLogout(!token);
@@ -29,7 +28,7 @@ function Appbar() {
         setUsername(storedUser.name);
       }
     } catch (error) {
-      console.error("Error parsing user from localStorage:", error);
+      console.error("Error parsing user from localStorage:", error,logout);
     }
   }, []);
 

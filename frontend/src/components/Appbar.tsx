@@ -11,6 +11,7 @@ import { Button } from "./ui/button";
 import { faSnowflake } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 function Appbar() {
   const navigate = useNavigate();
   const [logout, setLogout] = React.useState(false);
@@ -28,7 +29,8 @@ function Appbar() {
         setUsername(storedUser.name);
       }
     } catch (error) {
-      console.error("Error parsing user from localStorage:", error,logout);
+      console.error("Error parsing user from localStorage:",error );
+      console.log(logout)
     }
   }, []);
 

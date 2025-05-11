@@ -26,6 +26,13 @@ function Signinauth() {
       const token = response.data.jwt;
       localStorage.setItem("token", `Bearer ${token}`);
       console.log("Sign-in response:", response.data);
+      const userRes = await axios.get(`${BACKEND_URL}/api/v1/user/getloggedinuser`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      localStorage.setItem("user", JSON.stringify(userRes.data.users));
+      console.log("User info response:", userRes.data);
       navigate("/landingpage");
     } catch (error: unknown) {
       toast.dismiss(toastId);

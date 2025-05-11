@@ -1,24 +1,17 @@
 
-
-
-import Appbar from "../components/Appbar";
-import TextEditor from "../components/Texteditor"; 
+import Appbar from '../components/Appbar';
+import  BlogEditor from '../components/Texteditor'
+import { Provider } from 'react-redux';
 
 export const Createblog = () => {
-  
-
   return (
-    <div>
-     <div>
+    <div className="min-h-screen bg-gray-50">
       <Appbar />
-     </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center py-10">
+        <div className="w-full max-w-4xl">
        
-      </div>
-      <div className='flex justify-center mt-10 h-1/2'>
-        <div className='w-1/2 h-3/4'>
-             
-          <TextEditor  />
+          <BlogEditor />
+         
         </div>
       </div>
     </div>

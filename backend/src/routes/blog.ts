@@ -207,27 +207,48 @@ return c.json({post} )
   })
  
 
-  blogrouter.delete('/:id',async (c) => {
+  blogrouter.delete('/:id', async (c) => {
     const idstring = c.req.param('id');
- 
-   const id=parseInt(idstring);
+    const id = parseInt(idstring);
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
-  }).$extends(withAccelerate())
-    try{
-await prisma.post.delete({
-  where:{
-    id
-  }
-})
-return c.json("deleted succesfuly")
-    }
-    catch(e:any){
-      c.status(403);
+    }).$extends(withAccelerate());
+    try {
+      const authHeader = c.req.header('Authorization');
+      if (!authHeader) {
+        c.status(401);
+        return c.json({ message: 'Unauthorized: No token provided' });
+      }
+      const token = authHeader.split(' ')[1];
+      if (!token) {
+        c.status(401);
+        return c.json({ message: 'Unauthorized: Invalid token format' });
+      }
+      const decoded: any = await verify(token, c.env.JWT_TOKEN);
+      // console.log(decoded.id)
+      // const loggedInUserId =  decoded.userId;
+      const post = await prisma.post.findUnique({
+        where: { id },
+      });
+      if (!post) {
+        c.status(404);
+        return c.json({ message: 'Post not found' });
+      }
+      // console.log(post,"bndhjs")
+      // console.log( decoded.userId)
+      if (post.authorid !== decoded.id) {
+        c.status(403);
+        return c.json({ message: 'Forbidden: You can only delete your own posts' });
+      }
+      await prisma.post.delete({
+        where: { id },
+      });
+      return c.json({ message: 'Deleted successfully' });
+    } catch (e: any) {
+      c.status(500);
       return c.json({
-        message:"error",
-        details: e.message 
-      })
+        message: 'Server error',
+        details: e.message,
+      });
     }
-   
-  })
+  });

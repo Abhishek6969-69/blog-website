@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
            title: string ,
             content: string ,
             id: number ,
-            data?:any
+            data?:unknown,
             imageurl:string,
             publishdate: string ,
             author: {
@@ -19,8 +19,8 @@ import { useParams } from "react-router-dom";
           
 }
 
-export const useEachblog=(()=>{
-    const {id}=useParams<{id:string}>();
+export const useEachblog=({id}:{id:string})=>{
+    // const {id}=useParams<{id:string}>();
    
     const [loading,setloading]=useState(true);
 const[blogs2,setblogs2]=useState<Blog >();
@@ -49,7 +49,7 @@ return{
     loading,
     blogs2
 }
-})
+}
  export const useBlogs=()=>{
 const [loading,setloading]=useState(true);
 const[blog,setblog]=useState<Blog[]>([]);

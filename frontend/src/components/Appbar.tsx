@@ -6,7 +6,11 @@ import { BsBookFill } from "react-icons/bs";
 import { TfiWrite } from "react-icons/tfi";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 import { Avatar } from "./Blogcards";
-
+import { Button } from "./ui/button";
+// import { Codepen } from 'lucide-solid';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSnowflake } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Appbar() {
   const navigate = useNavigate();
@@ -31,7 +35,7 @@ function Appbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    logout;
+    
     setLogout(true);
     navigate("/signup");
   };
@@ -41,8 +45,9 @@ function Appbar() {
       <div className="font-serif">
         <Link to="/landingpage">
           <div className="flex items-center gap-3">
-            <BsBookFill className="size-10" />
-            <p className="font-extrabold text-[13px] md:text-[25px] mr-3">MindMosaic</p>
+          <FontAwesomeIcon icon={faSnowflake} />
+
+            <p className="font-extrabold text-[13px] md:text-[25px] mr-3">Blogify</p>
           </div>
         </Link>
       </div>
@@ -51,8 +56,9 @@ function Appbar() {
         
 
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate("/createblog")}>
-          <TfiWrite className="size-10" />
-          <p>Write</p>
+          {/* <TfiWrite className="size-10" /> */}
+          <Button >Start Publishing</Button>
+          
         </div>
 
       

@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect, memo } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState, useCallback, useEffect, memo, Suspense } from 'react';
+import { lazy } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import DOMPurify from 'dompurify';
 import { BACKEND_URL } from './config';
 import { toast } from 'sonner';
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = lazy(() => import('react-quill'));
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -247,17 +247,19 @@ const BlogEditor: React.FC = () => {
             Content
           </label>
           <div className="border border-gray-300 rounded-lg overflow-hidden">
-            <ReactQuill
-              id="content"
-              theme="snow"
-              modules={modules}
-              formats={formats}
-              value={content}
-              onChange={handleContentChange}
-              className="min-h-[24rem]"
-              readOnly={isSubmitting}
-              aria-describedby={error ? 'error-message' : undefined}
-            />
+            <Suspense fallback={<div className="min-h-[24rem] bg-gray-200 animate-pulse"></div>}>
+              <ReactQuill
+                id="content"
+                theme="snow"
+                modules={modules}
+                formats={formats}
+                value={content}
+                onChange={handleContentChange}
+                className="min-h-[24rem]"
+                readOnly={isSubmitting}
+                aria-describedby={error ? 'error-message' : undefined}
+              />
+            </Suspense>
           </div>
         </div>
 

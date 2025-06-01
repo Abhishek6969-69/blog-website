@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Appbar from "../components/Appbar";
-import { Blogcard } from "../components/Blogcards";
+import  BlogCard  from "../components/Blogcards";
 import { useBlogs } from "../components/hooks";
 import Shimmer from "../components/shimmer";
 import dayjs from "dayjs";
@@ -44,7 +44,8 @@ function Blogs() {
                   key={b.id}
                   className="group transform hover:scale-[1.02] transition duration-300"
                 >
-                  <Blogcard
+                  
+                  <BlogCard
                     authorname={b.author.name}
                     publisheddate={dayjs(b.publishdate).format("YYYY-MM-DD")}
                     key={b.id}

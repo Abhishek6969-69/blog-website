@@ -97,8 +97,8 @@ const ImageHandler = {
         console.log('Upload successful, URL:', response.data.url);
         toast.success('Image uploaded successfully');
         return response.data.url;
-      }
-      
+}
+
       console.error('Upload failed:', {
         status: response.status,
         data: response.data
@@ -173,15 +173,15 @@ const BlogEditor: React.FC = () => {
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['blockquote', 'code-block'],
-        [{ color: [] }, { background: [] }],
-        [{ align: [] }],
-        ['link', 'image'],
-        ['clean'],
-      ],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['blockquote', 'code-block'],
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+      ['link', 'image'],
+      ['clean'],
+    ],
       handlers: {
         image: function(this: QuillHandler) {
           console.log('Image button clicked');
@@ -200,7 +200,7 @@ const BlogEditor: React.FC = () => {
                 const range = this.quill.getSelection(true);
                 if (range) {
                   this.quill.insertEmbed(range.index, 'image', url);
-                  setImageUrl(url);
+              setImageUrl(url);
                 } else {
                   console.error('No cursor position found');
                   toast.error('Please click where you want to insert the image');
@@ -306,7 +306,7 @@ const BlogEditor: React.FC = () => {
       }
 
       const payload: Omit<Blog, 'id'> = {
-        title,
+          title,
         content: sanitizedContent,
         author: { name: 'Anonymous' },
         publishdate: new Date().toISOString().split('T')[0],
@@ -320,7 +320,7 @@ const BlogEditor: React.FC = () => {
         headers: {
           Authorization: token,
           'Content-Type': 'application/json',
-        },
+          },
       });
 
       const blogId = response.data.id;
@@ -376,86 +376,86 @@ const BlogEditor: React.FC = () => {
   return (
     <div className="bg-white shadow-2xl rounded-2xl p-8">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Create New Blog Post</h1>
-      {error && (
+            {error && (
         <div id="error-message" className="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
-          {error}
-        </div>
-      )}
+                {error}
+              </div>
+            )}
 
-      <div className="mb-6">
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-          Blog Title
-        </label>
-        <input
-          type="text"
-          id="title"
-          value={title}
+            <div className="mb-6">
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                Blog Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                value={title}
           onChange={handleTitleChange}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-          placeholder="Enter your blog title"
-          disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="Enter your blog title"
+                disabled={isSubmitting}
           aria-describedby={error ? 'error-message' : undefined}
-        />
-      </div>
+              />
+            </div>
 
-      <div className="mb-8">
+            <div className="mb-8">
         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
-          Content
-        </label>
-        <div className="border border-gray-300 rounded-lg overflow-hidden">
+                Content
+              </label>
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
           <Suspense fallback={<div className="min-h-[24rem] bg-gray-200 animate-pulse"></div>}>
             <MemoizedQuill
               value={content}
               onChange={handleContentChange}
-              modules={modules}
-              formats={formats}
-              readOnly={isSubmitting}
-            />
+                  modules={modules}
+                  formats={formats}
+                  readOnly={isSubmitting}
+                />
           </Suspense>
-        </div>
-      </div>
+              </div>
+            </div>
 
-      <div className="flex justify-end space-x-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 font-medium"
-          disabled={isSubmitting}
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleSubmit}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 font-medium flex items-center"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <>
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={() => navigate(-1)}
+                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+                disabled={isSubmitting}
               >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Publishing...
-            </>
-          ) : (
-            'Publish Post'
-          )}
-        </button>
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 font-medium flex items-center"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Publishing...
+                  </>
+                ) : (
+                  'Publish Post'
+                )}
+              </button>
         <button
           type="button"
           onClick={() =>

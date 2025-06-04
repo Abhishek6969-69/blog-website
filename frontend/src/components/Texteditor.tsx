@@ -7,7 +7,7 @@ import { AxiosError } from 'axios';
 import DOMPurify from 'dompurify';
 import { BACKEND_URL } from './config';
 import { toast } from 'sonner';
-import { Quill } from 'react-quill';
+
 
 interface Blog {
   id: number;

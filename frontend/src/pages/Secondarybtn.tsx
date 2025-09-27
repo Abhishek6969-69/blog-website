@@ -1,14 +1,13 @@
 
 
-const Secondarybtn = ({name}:{name:string}) => {
+const Secondarybtn = ({name, onClick}:{name:string, onClick?: () => void}) => {
   return (
-    <div>
-<button className="px-6 py-3 bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition"  onClick={() => {
-           
-          }}>
+    <button 
+      className="px-6 py-3 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-lg border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"  
+      onClick={onClick}
+    >
       {name}
     </button>
-    </div>
   )
 }
 

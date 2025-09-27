@@ -19,9 +19,9 @@ function App() {
     const token = localStorage.getItem('token');
     
     // Only redirect if user tries to access protected pages
-    const publicPaths = ['/signup', '/signin'];
+    const protectedPaths = ['/blogs', '/createblog', '/profile'];
   
-    if (!token && !publicPaths.includes(location.pathname)) {
+    if (!token && protectedPaths.includes(location.pathname)) {
       navigate('/signup');
     }
   }, [navigate, location.pathname]);
@@ -30,15 +30,14 @@ function App() {
     <>
      <Toaster  />
     <Routes>
-       <Route path="/" element={<Landingpg />} />
+      <Route path="/" element={<Landingpg />} />
+      <Route path="/landingpage" element={<Blogs />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signin" element={<Signin />} />
+      <Route path="/blogs" element={<Blogs />} />
       <Route path="/blog/:id" element={<Blogcontent />} />
-     
       <Route path="/createblog" element={<Createblog />} />
-      <Route path="/landingpage" element={<Blogs />} />
       <Route path="/profile" element={<ProfilePage />} />
-     
     </Routes>
    
     </>

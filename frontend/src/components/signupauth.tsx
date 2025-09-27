@@ -64,37 +64,63 @@ function Signupauth() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="">
-        <h1 className="text-3xl font-bold text-center">Create an Account</h1>
-        <h3 className="text-slate-600 mx-[20px] text-center mt-2">
-          <Link to="/signin">Already have an account? Login</Link>
-        </h3>
+    <div className="w-full">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center mb-4">
+          <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center mr-2">
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+          </div>
+          <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Write Wave</span>
+        </div>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Create your account</h1>
+        <p className="text-gray-600">Join our community and start writing</p>
+      </div>
+
+      {/* Form */}
+      <div className="space-y-6">
         <Inputbox
-          label="Name"
-          placeholder="Name"
+          label="Full name"
+          placeholder="Enter your full name"
           type="text"
           onChange={(e) => setPostInput({ ...postInput, name: e.target.value })}
         />
         <Inputbox
-          label="Email"
-          placeholder="Email"
+          label="Email address"
+          placeholder="Enter your email"
           type="email"
           onChange={(e) => setPostInput({ ...postInput, email: e.target.value })}
         />
         <Inputbox
           label="Password"
-          placeholder="Password"
+          placeholder="Create a password"
           type="password"
           onChange={(e) => setPostInput({ ...postInput, password: e.target.value })}
         />
+        
+        {/* Primary Button */}
         <button
           type="button"
           onClick={sendRequest}
-          className="mt-6 w-full hover:bg-slate-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 border bg-white"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          Sign up
+          Create account
         </button>
+      </div>
+
+      {/* Footer */}
+      <div className="text-center mt-8">
+        <p className="text-gray-600">
+          Already have an account?{' '}
+          <Link 
+            to="/signin" 
+            className="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
+          >
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
   );
@@ -109,12 +135,12 @@ interface InputProps {
 
 const Inputbox = ({ placeholder, type, label, onChange }: InputProps) => {
   return (
-    <div className="mt-3">
-      <label className="block mb-1 text-sm font-medium text-gray-900">{label}</label>
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
       <input
         type={type}
-        id={label.toLowerCase()}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        id={label.toLowerCase().replace(/\s+/g, '')}
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-500"
         placeholder={placeholder}
         onChange={onChange}
       />

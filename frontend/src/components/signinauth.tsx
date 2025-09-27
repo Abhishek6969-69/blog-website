@@ -58,16 +58,26 @@ function Signinauth() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center">Login</h1>
-        <h3 className="text-slate-600 text-center mt-2">
-          <Link to="/signup">Don't have an account? Sign up</Link>
-        </h3>
+    <div className="w-full">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center mb-4">
+          <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center mr-2">
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+          </div>
+          <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Write Wave</span>
+        </div>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
+        <p className="text-gray-600">Sign in to your account to continue</p>
+      </div>
 
+      {/* Form */}
+      <div className="space-y-6">
         <Inputbox
-          label="Email"
-          placeholder="Email"
+          label="Email address"
+          placeholder="Enter your email"
           type="email"
           onChange={(e) =>
             setPostInput({
@@ -78,7 +88,7 @@ function Signinauth() {
         />
         <Inputbox
           label="Password"
-          placeholder="Password"
+          placeholder="Enter your password"
           type="password"
           onChange={(e) =>
             setPostInput({
@@ -87,24 +97,28 @@ function Signinauth() {
             })
           }
         />
+        
+        {/* Primary Button */}
         <button
           type="button"
           onClick={sendRequest}
-          className="mt-6 w-full hover:bg-slate-200 font-medium rounded-lg text-sm px-5 py-2.5 border bg-white"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Sign in
         </button>
-        {/* <button
-          type="button"
-          onClick={() =>
-            toast.info("Test toast working!", {
-              style: { background: "#2196f3", color: "#fff" }, // Custom blue for info
-            })
-          }
-          className="mt-2 w-full hover:bg-slate-200 font-medium rounded-lg text-sm px-5 py-2.5 border bg-gray-100"
-        >
-          Test Toast
-        </button> */}
+      </div>
+
+      {/* Footer */}
+      <div className="text-center mt-8">
+        <p className="text-gray-600">
+          Don't have an account?{' '}
+          <Link 
+            to="/signup" 
+            className="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
+          >
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );
@@ -119,12 +133,12 @@ interface InputProps {
 
 const Inputbox = ({ placeholder, type, label, onChange }: InputProps) => {
   return (
-    <div className="mt-3">
-      <label className="block mb-1 text-sm font-medium text-gray-900">{label}</label>
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
       <input
         type={type}
-        id={label.toLowerCase()}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        id={label.toLowerCase().replace(/\s+/g, '')}
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-500"
         placeholder={placeholder}
         onChange={onChange}
       />

@@ -96,60 +96,127 @@ function Blogcontent(): ReactNode {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50">
       <Appbar />
-      <div className="flex flex-col md:flex-row ml-4">
-        {/* Main Content Section */}
-        <div className="flex justify-center w-full md:w-2/3 mt-16 lg:w-3/5 mx-4 no-scrollbar overflow-y-auto max-h-screen">
-          <div className="w-full max-w-3xl mx-4">
-            <div>
-              <h1 className="text-3xl md:text-5xl font-bold capitalize">{blogs2.title}</h1>
-              <div className="mt-2 shadow-sm flex justify-between">
-                <h2 className="inline text-lg text-gray-600 capitalize">
-                  {dayjs(blogs2.publishdate).format('dddd, D[th] MMMM, YYYY')}
-                </h2>
-                <div>
+      
+      <style>
+        {`
+          .article-content img {
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            margin: 2em auto !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+          }
+          
+          .article-content p {
+            margin: 1.5em 0 !important;
+            line-height: 1.8 !important;
+          }
+          
+          .article-content h1, 
+          .article-content h2, 
+          .article-content h3 {
+            margin: 2em 0 1em 0 !important;
+            font-weight: 600 !important;
+          }
+          
+          .article-content blockquote {
+            border-left: 4px solid #4f46e5 !important;
+            background: #f8fafc !important;
+            margin: 1.5em 0 !important;
+            padding: 1em 1.5em !important;
+            border-radius: 0 8px 8px 0 !important;
+            font-style: italic !important;
+          }
+        `}
+      </style>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl p-8 md:p-12 border border-white/20">
+              {/* Article Header */}
+              <header className="mb-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                    <Avatar name={blogs2.author.name} w={32} h={32} />
+                    <div>
+                      <p className="font-semibold text-gray-900">{blogs2.author.name}</p>
+                      <p>{dayjs(blogs2.publishdate).format('MMM DD, YYYY')} • {Math.ceil(blogs2.content.length / 100)} min read</p>
+                    </div>
+                  </div>
+                  
                   <button
                     type="button"
                     onClick={handleDelete}
-                    className="text-red-600 hover:text-red-800"
+                    className="group p-3 text-gray-400 hover:text-red-500 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 rounded-xl transition-all duration-300 border border-transparent hover:border-red-200"
                     aria-label="Delete blog post"
                   >
-                    <MdDelete size={24} />
+                    <MdDelete size={20} className="group-hover:scale-110 transition-transform" />
                   </button>
                 </div>
-              </div>
-            </div>
+                
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                  {blogs2.title}
+                </h1>
+                
+                {/* Featured Image - Only show if it's not a placeholder and there are no images in content */}
+                {blogs2.imageurl && 
+                 blogs2.imageurl !== 'https://via.placeholder.com/150' && 
+                 !blogs2.content.includes('<img') && (
+                  <div className="mb-8 rounded-xl overflow-hidden">
+                    <img 
+                      src={blogs2.imageurl} 
+                      alt={blogs2.title}
+                      className="w-full h-64 md:h-80 object-cover"
+                    />
+                  </div>
+                )}
+              </header>
 
-            <div className="w-full">
-              <div className="flex justify-center">
-                {/* Image can be enabled if needed */}
-                {/* <img src={blogs2.imageurl} className="w-full max-w-lg font-serif" alt={blogs2.title} /> */}
+              {/* Article Content */}
+              <div className="prose prose-lg max-w-none">
+                <div 
+                  className="text-gray-800 leading-relaxed article-content"
+                  dangerouslySetInnerHTML={{ __html: content2 }} 
+                />
               </div>
-              <div className="mt-10 text-lg leading-relaxed font-serif">
-                <div dangerouslySetInnerHTML={{ __html: content2 }} />
-                {/* Render HTML content */}
-              </div>
-            </div>
+            </article>
           </div>
-        </div>
 
-        {/* Sidebar with Blog Post Author Info */}
-        <div className="w-full md:w-[420px] lg:w-[350px] shadow-2xl mt-10 md:mt-0 ml-10 md:ml-28">
-          <div className="ml-6">
-            <h3 className="text-xl font-semibold mt-8">About the Author</h3>
-            <div className="flex items-center mt-4">
-              <Avatar name={blogs2.author.name} w={35} h={35} />
-              <h4 className="text-lg font-semibold capitalize ml-2">{blogs2.author.name}</h4>
-            </div>
-            <div className="mt-4 text-sm text-gray-800">
-              <p>
-                Written by {blogs2.author.name} on{' '}
-                {dayjs(blogs2.publishdate).format('D[th] MMMM, YYYY')}.
-              </p>
-              <p className="mt-2">
-                This post is {Math.ceil(blogs2.content.length / 100)} minute(s) read.
-              </p>
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-white/20 sticky top-24">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">About the Author</h3>
+              
+              <div className="flex items-center gap-3 mb-4">
+                <Avatar name={blogs2.author.name} w={48} h={48} />
+                <div>
+                  <h4 className="font-semibold text-gray-900">{blogs2.author.name}</h4>
+                  <p className="text-sm text-gray-500">Writer</p>
+                </div>
+              </div>
+              
+              <div className="text-sm text-gray-600 space-y-2">
+                <p>
+                  Published on {dayjs(blogs2.publishdate).format('MMMM DD, YYYY')}
+                </p>
+                <p>
+                  {Math.ceil(blogs2.content.length / 100)} minute read
+                </p>
+              </div>
+              
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                  <span>Show some love</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

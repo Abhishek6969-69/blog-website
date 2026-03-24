@@ -128,7 +128,7 @@ const MemoizedQuill = memo(({
 
   try {
     return (
-      <div className="relative">
+      <div className="relative w-full">
         <ReactQuill
           ref={quillRef}
           theme="snow"
@@ -240,81 +240,80 @@ const BlogEditor: React.FC = () => {
       /* Toolbar base styling */
       .ql-toolbar.ql-snow {
         border: none !important;
-        border-bottom: 2px solid #e5e7eb !important;
-        padding: 12px 16px !important;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        padding: 12px 0 !important;
+        background: white !important;
         display: flex !important;
         flex-wrap: wrap !important;
         align-items: center !important;
-        gap: 6px !important;
-        min-height: 60px !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        gap: 4px !important;
+        min-height: 48px !important;
+        box-shadow: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin-bottom: 12px !important;
       }
 
       /* Format group containers with better definition */
       .ql-toolbar .ql-formats {
         display: flex !important;
         align-items: center !important;
-        margin: 0 !important;
-        padding: 6px 8px !important;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        gap: 3px !important;
+        margin: 0 8px !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 4px !important;
+        gap: 2px !important;
         position: relative !important;
+        visibility: visible !important;
       }
 
       .ql-toolbar .ql-formats:hover {
-        border-color: #9ca3af !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
       }
 
       /* Add separators between format groups */
       .ql-toolbar .ql-formats:not(:last-child)::after {
         content: '' !important;
         position: absolute !important;
-        right: -5px !important;
+        right: -10px !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
         width: 1px !important;
-        height: 20px !important;
+        height: 24px !important;
         background: #e5e7eb !important;
       }
 
       /* Toolbar buttons with better definition */
       .ql-toolbar button {
-        width: 32px !important;
-        height: 32px !important;
-        border: 1px solid #e5e7eb !important;
-        border-radius: 6px !important;
-        background: white !important;
-        color: #374151 !important;
+        width: 36px !important;
+        height: 36px !important;
+        border: none !important;
+        border-radius: 4px !important;
+        background: transparent !important;
+        color: #4b5563 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        margin: 0 1px !important;
+        margin: 2px 0 !important;
         padding: 0 !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 500 !important;
         transition: all 0.2s ease !important;
         cursor: pointer !important;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+        visibility: visible !important;
+        line-height: 1 !important;
       }
 
       .ql-toolbar button:hover {
-        background: #4f46e5 !important;
-        color: white !important;
-        border-color: #4338ca !important;
-        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25) !important;
-        transform: translateY(-1px) !important;
+        background: #f3f4f6 !important;
+        color: #1f2937 !important;
       }
 
       .ql-toolbar button.ql-active {
-        background: #4f46e5 !important;
-        color: white !important;
-        border-color: #4338ca !important;
-        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4) !important;
+        background: #e8e8e8 !important;
+        color: #1f2937 !important;
       }
 
       /* Bold button */
@@ -410,53 +409,59 @@ const BlogEditor: React.FC = () => {
       /* Picker dropdowns with better styling */
       .ql-toolbar .ql-picker {
         position: relative !important;
-        background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%) !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 6px !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 4px !important;
         font-size: 13px !important;
-        line-height: 1.2 !important;
+        line-height: 1.4 !important;
         min-width: 80px !important;
-        max-width: 140px !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+        max-width: 120px !important;
+        box-shadow: none !important;
         transition: all 0.2s ease !important;
+        padding: 6px 8px !important;
+        color: #4b5563 !important;
       }
 
       .ql-toolbar .ql-picker:hover {
-        border-color: #4f46e5 !important;
-        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15) !important;
-        transform: translateY(-1px) !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        background: #f3f4f6 !important;
       }
 
       .ql-toolbar .ql-picker.ql-expanded {
-        border-color: #4f46e5 !important;
-        box-shadow: 0 2px 12px rgba(79, 70, 229, 0.2) !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        background: white !important;
       }
 
       .ql-toolbar .ql-picker-label {
-        padding: 6px 8px !important;
-        color: #374151 !important;
+        padding: 0 !important;
+        color: #4b5563 !important;
         cursor: pointer !important;
         font-size: 13px !important;
-        line-height: 1.2 !important;
+        line-height: 1.4 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+        display: flex !important;
+        align-items: center !important;
       }
 
       .ql-toolbar .ql-picker-label::before {
         font-size: 13px !important;
-        line-height: 1.2 !important;
+        line-height: 1.4 !important;
       }
 
       /* Dropdown arrow */
       .ql-toolbar .ql-picker-label::after {
         content: '' !important;
+        display: none !important;
         border: none !important;
         margin-left: 4px !important;
       }
 
       .ql-picker.ql-expanded .ql-picker-label::after {
-        content: '' !important;
+        display: none !important;
       }
 
       /* Dropdown options container */
@@ -468,14 +473,14 @@ const BlogEditor: React.FC = () => {
         background: white !important;
         border: 1px solid #e5e7eb !important;
         border-radius: 6px !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
         z-index: 10000 !important;
-        margin-top: 2px !important;
+        margin-top: 4px !important;
         padding: 6px !important;
-        max-height: 180px !important;
+        max-height: 200px !important;
         overflow-y: auto !important;
         display: none !important;
-        min-width: 120px !important;
+        min-width: 140px !important;
       }
 
       .ql-picker.ql-expanded .ql-picker-options {
@@ -484,15 +489,15 @@ const BlogEditor: React.FC = () => {
 
       /* Dropdown items */
       .ql-picker-item {
-        padding: 6px 10px !important;
-        font-size: 12px !important;
-        line-height: 1.3 !important;
-        color: #374151 !important;
+        padding: 8px 12px !important;
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        color: #4b5563 !important;
         cursor: pointer !important;
         border-radius: 4px !important;
         transition: background-color 0.15s ease !important;
         white-space: nowrap !important;
-        margin-bottom: 1px !important;
+        margin-bottom: 2px !important;
       }
 
       .ql-picker-item:hover {
@@ -500,8 +505,8 @@ const BlogEditor: React.FC = () => {
       }
 
       .ql-picker-item.ql-selected {
-        background: #ede9fe !important;
-        color: #4f46e5 !important;
+        background: #e8e8e8 !important;
+        color: #1f2937 !important;
       }
 
       /* Header dropdown specific styles */
@@ -866,11 +871,33 @@ const BlogEditor: React.FC = () => {
       /* Ensure proper stacking */
       .ql-container {
         position: relative !important;
+        border: none !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        overflow: visible !important;
       }
 
-      .ql-toolbar {
+      .ql-container.ql-snow {
+        border: none !important;
+        overflow: visible !important;
+      }
+
+      .ql-editor {
+        padding: 0 !important;
+        min-height: 400px !important;
+        font-size: 16px !important;
+        line-height: 1.7 !important;
+        color: #1f2937 !important;
+        background: transparent !important;
         position: relative !important;
-        z-index: 100 !important;
+        z-index: 1 !important;
+        pointer-events: auto !important;
+        visibility: visible !important;
+        overflow: visible !important;
+      }
+
+      .ql-editor.ql-blank::before {
+        color: #d1d5db !important;
+        font-style: italic !important;
       }
     `;
     document.head.appendChild(style);
@@ -983,16 +1010,26 @@ const BlogEditor: React.FC = () => {
   console.log('About to render BlogEditor JSX...');
   
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-200/50">
-        {/* Header Section */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6">
-          <h2 className="text-2xl font-bold text-white mb-2">Create Your Story</h2>
-          <p className="text-indigo-100">Share your thoughts and insights with the world</p>
+    <div className="min-h-screen bg-white">
+      {/* Page Header Section */}
+      <div className="bg-white border-b border-gray-100 py-8">
+        <div className="max-w-5xl mx-auto px-5 sm:px-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Create New Post</h1>
+          <p className="text-gray-500">Share your thoughts and knowledge with the world</p>
         </div>
-        
-        {/* Content Section */}
-        <div className="p-6 md:p-8">
+      </div>
+
+      {/* Editor Header Section */}
+      <div className="bg-black border-b border-gray-200">
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-6">
+          <h2 className="text-2xl font-bold text-white mb-1">Create Your Story</h2>
+          <p className="text-gray-400">Write something amazing</p>
+        </div>
+      </div>
+
+      {/* Main Editor Area */}
+      <div className="bg-white min-h-screen">
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-8">
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-start gap-3">
               <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -1008,7 +1045,7 @@ const BlogEditor: React.FC = () => {
           {/* Title Section */}
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-3">
-              <svg className="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
               <label htmlFor="title" className="text-lg font-semibold text-gray-900">
@@ -1020,14 +1057,14 @@ const BlogEditor: React.FC = () => {
               id="title"
               value={title}
               onChange={handleTitleChange}
-              className="w-full px-6 py-4 text-xl font-semibold border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 transition-all duration-300 placeholder-gray-400 bg-gray-50/50 hover:bg-white focus:bg-white"
+              className="w-full px-0 py-2 text-3xl font-bold border-0 focus:border-0 focus:ring-0 transition-all duration-300 placeholder-gray-400 bg-transparent hover:bg-gray-50 focus:bg-white"
               placeholder="Give your story a compelling title..."
               disabled={isSubmitting}
               maxLength={200}
             />
-            <div className="mt-2 flex justify-between items-center">
-              <p className="text-sm text-gray-500">Write a clear, engaging title for your article</p>
-              <span className={`text-sm font-medium ${
+            <div className="mt-2 flex justify-between items-center text-xs text-gray-500">
+              <p>Write a clear, engaging title for your article</p>
+              <span className={`font-medium ${
                 title.length > 180 ? 'text-red-500' : title.length > 150 ? 'text-yellow-500' : 'text-gray-400'
               }`}>
                 {title.length}/200
@@ -1038,7 +1075,7 @@ const BlogEditor: React.FC = () => {
           {/* Content Editor Section */}
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-3">
-              <svg className="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
               </svg>
               <label className="text-lg font-semibold text-gray-900">
@@ -1046,7 +1083,7 @@ const BlogEditor: React.FC = () => {
               </label>
             </div>
             
-            <div className="border-2 border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-gray-300 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/20 bg-white shadow-sm">
+            <div className="border-0">
               <MemoizedQuill
                 value={content}
                 onChange={handleContentChange}
@@ -1085,7 +1122,7 @@ const BlogEditor: React.FC = () => {
               
               <button
                 onClick={handleSubmit}
-                className={`px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center min-w-[140px] ${
+                className={`px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center min-w-[140px] ${
                   !title.trim() || !content.trim() ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={isSubmitting || !title.trim() || !content.trim()}
